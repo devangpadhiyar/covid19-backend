@@ -1,8 +1,19 @@
-const userController = require("../controllers/user");
 const router = require('express').Router();
-const {body, validationResult} = require('express-validator');
+const userController = require('../controllers/user');
 
+// Signup route
+router.post(
+  '/signup',
+  userController.validate('userSignUp'),
+  userController.userSignUp
+);
 
-router.post('/signup/', [body('email').notEmpty().isEmail()], userController.userSignUp);
+// Sign in route
+
+router.post(
+  '/signin',
+  userController.validate('userSignin'),
+  userController.userSignin
+);
 
 module.exports = router;
