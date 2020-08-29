@@ -1,0 +1,12 @@
+{
+  "ext": "js,ts,json",
+  "ignore": [
+    "src/**/*.spec.ts"
+  ],
+  "execMap": {
+    "js": "node --harmony",
+    "py": "python",
+    "rb": "ruby",
+    "ts": "ts-node"
+  }
+}

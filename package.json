@@ -1,0 +1,38 @@
+{
+  "name": "covid19-backend",
+  "version": "1.0.0",
+  "description": "A demonstration of covid 19 API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "inspect": "nodemon --inspect src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devangpadhiyar/covid19-backend.git"
+  },
+  "author": "Devang Padhiyar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devangpadhiyar/covid19-backend/issues"
+  },
+  "homepage": "https://github.com/devangpadhiyar/covid19-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bull": "^3.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.2",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
+  }
+}

@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# Mongo db local docker files
+mongo-data/
