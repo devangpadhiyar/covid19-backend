@@ -1,9 +1,22 @@
 const router = require('express').Router();
+const queryString = require('query-string');
 const policies = require('../policies');
+const analyticsController = require('../controllers/analytics');
 
-router.get('/protected-endpoint', policies.isAuthenticated, (req, resp) => {
-  console.log(req);
-  resp.json({ status: 'Yes you can access' });
-});
+// Fetch data within the range
+router.get(
+  '/get-covid-data/:countryId',
+  policies.isAuthenticated,
+  analyticsController.validate('getCovidData'),
+  analyticsController.getCovidData
+);
+
+// Generate and send mail to user
+router.get(
+  '/send-covid-data-to-mail/:countryId',
+  policies.isAuthenticated,
+  analyticsController.validate('getCovidData'),
+  analyticsController.sendCovidDataToMail
+);
 
 module.exports = router;

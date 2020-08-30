@@ -19,6 +19,10 @@ require('./config/database');
 // Load models first
 require('./models');
 
+// Load consumers and queues for background tasks
+require('./backgroundTasks/queues');
+require('./backgroundTasks/consumers');
+
 // Passport config
 const passport = require('passport');
 const passportConfig = require('./config/passport');
