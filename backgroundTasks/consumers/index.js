@@ -4,6 +4,7 @@ const stream = require('stream');
 const config = require('../../config');
 
 const User = require('../../models/users');
+const { sendMail } = require('../../utils/mail');
 const { getCovidDataFromAPI } = require('../../services/analyticsService');
 const { sendCovidDataEmailToUser } = require('../queues');
 
@@ -107,8 +108,11 @@ sendCovidDataEmailToUser.process(async (job) => {
   plotly.getImage(figure, imgOpts, (error, imageStream) => {
     if (error) return console.log(error);
 
-    const memoryStream = new stream.Writable();
-
-    imageStream.pipe(memoryStream);
+    sendMail({
+      from: 'Devang PAdhiyar',
+      to: ['devangpadhiyar700@gmail.com'],
+      subject: 'Covid 19 reports',
+      text: 'Hello world!',
+    });
   });
 });

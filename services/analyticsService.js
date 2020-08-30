@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const COVID_API_URL = 'http://corona-api.com';
 
-const getCovidDataFromAPI = async (countryId, from, to) => {
+const getCovidDataFromAPI = async (countryId, from = null, to = null) => {
   const url = `${COVID_API_URL}/countries/${countryId}`;
   const response = await axios.get(url);
   if (response.status === 200) {
@@ -17,10 +17,13 @@ const getCovidDataFromAPI = async (countryId, from, to) => {
           date: moment(timeObj.date, 'YYYY-MM-DD').toDate(),
         }))
       : [];
-    const filteredData = _.filter(
-      sanitisedTimeline,
-      (o) => o.date >= from && o.date <= to
-    );
+    let filteredData = sanitisedTimeline;
+    if (from && to) {
+      filteredData = _.filter(
+        sanitisedTimeline,
+        (o) => o.date >= from && o.date <= to
+      );
+    }
     filteredData.reverse();
     return filteredData;
   }

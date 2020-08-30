@@ -37,6 +37,11 @@ const userSignin = async (req, resp, next) => {
   }
 };
 
+const userData = async (req, res, next) => {
+  const { user } = req;
+  res.json(user.toJSON());
+};
+
 // eslint-disable-next-line consistent-return
 const validate = (method) => {
   // eslint-disable-next-line default-case
@@ -97,5 +102,6 @@ const validate = (method) => {
 module.exports = {
   userSignUp,
   userSignin,
+  userData,
   validate,
 };
