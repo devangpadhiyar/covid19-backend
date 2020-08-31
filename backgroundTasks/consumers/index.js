@@ -107,19 +107,19 @@ sendCovidDataEmailToUser.process(async (job) => {
 
   plotly.getImage(figure, imgOpts, async (error, imageStream) => {
     if (error) return console.log(error);
-
-    const chunks = [];
-    for await (const chunk of imageStream) {
-      chunks.push(chunk);
-    }
-    const imageBuffer = Buffer.from(chunks);
-
-    const fs = require('fs');
+    //
+    // const chunks = [];
+    // for await (const chunk of imageStream) {
+    //   chunks.push(chunk);
+    // }
+    // const imageBuffer = Buffer.from(chunks);
+    //
+    // const fs = require('fs');
 
     const attachments = [
       {
         filename: 'Reports.png',
-        content: imageBuffer,
+        content: imageStream,
         contentType: 'image/png',
       },
     ];
