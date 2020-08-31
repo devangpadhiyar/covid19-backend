@@ -5,7 +5,7 @@ const toDate = (format) => (value) => {
     return null;
   }
   try {
-    return moment(value, format).toDate().getUTCDate();
+    return moment(value, format).toDate();
   } catch (e) {
     return null;
   }

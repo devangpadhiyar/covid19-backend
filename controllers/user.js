@@ -13,7 +13,9 @@ const userSignUp = async (req, resp, next) => {
 
   const { email, firstName, lastName, country, password } = req.body;
   const user = await createUser(email, firstName, lastName, country, password);
-  resp.json(user.toJSON());
+  const secureData = loginUser(user);
+
+  resp.json({ user: user.toJSON(), loginData: secureData });
 };
 
 const userSignin = async (req, resp, next) => {
@@ -39,7 +41,13 @@ const userSignin = async (req, resp, next) => {
 
 const userData = async (req, res, next) => {
   const { user } = req;
-  res.json(user.toJSON());
+  res.json({
+    _id: user._id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    country: user.country,
+  });
 };
 
 // eslint-disable-next-line consistent-return

@@ -4,7 +4,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const User = require('../models/users');
 
 const createUser = (email, firstName, lastName, country, password) => {
-  const user = new User({ email, firstName, lastName, password });
+  const user = new User({ email, firstName, lastName, password, country });
   return user.save();
 };
 
