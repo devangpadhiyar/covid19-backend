@@ -105,14 +105,35 @@ sendCovidDataEmailToUser.process(async (job) => {
     ],
   };
 
-  plotly.getImage(figure, imgOpts, (error, imageStream) => {
+  plotly.getImage(figure, imgOpts, async (error, imageStream) => {
     if (error) return console.log(error);
 
+    const chunks = [];
+    for await (const chunk of imageStream) {
+      chunks.push(chunk);
+    }
+    const imageBuffer = Buffer.from(chunks);
+
+    const fs = require('fs');
+
+    const attachments = [
+      {
+        filename: 'Reports.png',
+        content: imageBuffer,
+        contentType: 'image/png',
+      },
+    ];
+
     sendMail({
-      from: 'Devang PAdhiyar',
-      to: ['devangpadhiyar700@gmail.com'],
-      subject: 'Covid 19 reports',
-      text: 'Hello world!',
+      from: 'Covid19 Analytics',
+      to: [user.email],
+      subject: `Covid 19 reports for ${moment(from).format(
+        'DD-MM-YY'
+      )} -- ${moment(to).format('DD-MM-YY')} `,
+      text: `Hello there!, We have generated covid 19 reports for dates from  ${moment(
+        from
+      ).format('DD-MM-YY')} -- ${moment(to).format('DD-MM-YY')}`,
+      attachments,
     });
   });
 });
